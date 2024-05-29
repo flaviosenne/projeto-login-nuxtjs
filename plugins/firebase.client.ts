@@ -14,10 +14,10 @@ export default defineNuxtPlugin(nuxtApp => {
 
     const app = initializeApp(firebaseConfig)
     // const auth = getAuth(app)
-    const auth = {}
+    const authFake = { }
     return {
         provide: {
-            auth
+            auth: authFake
         }
     }
 })

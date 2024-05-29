@@ -1,8 +1,12 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 // criar função fake simulando comportamento do firebase para criação de usuário
 const createUserWithEmailAndPasswordFake = async (auth: any, name: string, email: string, password: string) => {
     return { user: {name, email, password} }
+}
+
+const signOutFake = async () => {
 }
 
 // criar função fake simulando comportamento do firebase para login do usuário
@@ -28,7 +32,16 @@ export const useFirebaseAuth = () => {
 
     }
 
+    const logout = async () =>{
+        try{
+            await signOutFake()
+            navigateTo('/login')
+        }catch(error){
+            console.error(error)
+        }
+    }
+
     return {
-        register, login
+        register, login, logout
     }
 }
